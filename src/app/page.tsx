@@ -9,7 +9,7 @@ export default function Home() {
       <Button variant="ghost">Ghost</Button>
       <Button variant="muted">muted</Button>
       <Button variant="outline">Outline</Button>
-      <Button variant="teritary">teritrary</Button>
+      <Button variant="tertiary">teritrary</Button>
 
     </div>
   )
