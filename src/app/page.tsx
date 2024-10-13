@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <Button variant="muted">muted</Button>
       <Button variant="outline">Outline</Button>
       <Button variant="tertiary">teritrary</Button>
+      <Input/>
 
     </div>
   )
