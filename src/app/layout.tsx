@@ -8,7 +8,7 @@ import { QueryProvider } from "@/components/query-provider";
 const inter = Inter({ subsets: ["latin"]})
 
 export const metadata: Metadata = {
-  title: "Xynaps | Where ideas connect, and work flows.",
+  title: "Xynapse | Where ideas connect, and work flows.",
   description: "Xynapse is a project management platform that connects tasks, teams, and tools for faster workflows."
 };
 
