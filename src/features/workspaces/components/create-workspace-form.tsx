@@ -47,7 +47,16 @@ export const CreateWorkspaceForm = ({ onCancel } : CreateWorkspaceFormProps) => 
     })
 
     const onSubmit = (values: z.infer<typeof createWorkspaceSchema>) => {
-        mutate({ json: values });
+        const finalValues = {
+            ...values,
+            image: values.image instanceof File ? values.image : "", 
+        }
+        mutate({ form: finalValues }, {
+            onSuccess: () => {
+                form.reset();
+                // redirect to new work space
+            }
+        });
     };
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -118,7 +127,7 @@ export const CreateWorkspaceForm = ({ onCancel } : CreateWorkspaceFormProps) => 
                                             <div className="flex flex-col">
                                                 <p className="text-sm">Workspace Icon</p>
                                                 <p className="text-sm text-muted-foreground">
-                                                    JPG, PNG, SVG, JPEG or GIF max 5MB
+                                                    JPG, PNG, SVG, JPEG or GIF max 1MB
                                                 </p>
                                                 <input 
                                                     className="hidden"
@@ -134,7 +143,7 @@ export const CreateWorkspaceForm = ({ onCancel } : CreateWorkspaceFormProps) => 
                                                     variant="tertiary"
                                                     size="xs"
                                                     className="w-fit mt-2"
-                                                    onClick={() => inputRef.current?.click}
+                                                    onClick={() => inputRef.current?.click()}
                                                 >
                                                     Upload Image
                                                 </Button>
