@@ -10,7 +10,7 @@ export default async function Home() {
   console.log({user});
 
   return (
-    <div className="bg-neutral-500 p-4 h-full">
+    <div className="bg-neutral-500">
       <CreateWorkspaceForm/>
     </div>
   );
