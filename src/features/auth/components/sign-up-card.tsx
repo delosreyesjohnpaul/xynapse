@@ -80,6 +80,7 @@ export const SignUpCard = () => {
                                                 {...field}
                                                 type="text"
                                                 placeholder="Enter your name"
+                                                disabled={isPending}
                                             />
                                         </FormControl>
                                         <FormMessage/>
@@ -98,6 +99,7 @@ export const SignUpCard = () => {
                                             {...field}
                                             type="email"
                                             placeholder="Enter email address"
+                                            disabled={isPending}
                                         />
                                     </FormControl>
                                     <FormMessage/>
@@ -115,6 +117,7 @@ export const SignUpCard = () => {
                                             {...field}
                                             type="password"
                                             placeholder="Enter password"
+                                            disabled={isPending}
                                         />
                                     </FormControl>
                                     <FormMessage/>
