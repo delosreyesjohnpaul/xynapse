@@ -1,7 +1,9 @@
+import { CreateWorkspaceForm } from "@/features/workspaces/components/create-workspace-form";
+
 const WorkspaceCreatePage = () => {
     return (
-        <div>
-            Workspacecreatepage
+        <div className="w-full lg:max-w-xl">
+            <CreateWorkspaceForm/>
         </div>
     );
 }
