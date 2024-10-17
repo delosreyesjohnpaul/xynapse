@@ -90,6 +90,7 @@ export const CreateWorkspaceForm = ({ onCancel } : CreateWorkspaceFormProps) => 
                                         </FormLabel>
                                         <FormControl>
                                             <Input
+                                                disabled={isPending}
                                                 {...field}
                                                 placeholder="Enter workspace name"
                                             />
@@ -127,7 +128,7 @@ export const CreateWorkspaceForm = ({ onCancel } : CreateWorkspaceFormProps) => 
                                             <div className="flex flex-col">
                                                 <p className="text-sm">Workspace Icon</p>
                                                 <p className="text-sm text-muted-foreground">
-                                                    JPG, PNG, SVG, JPEG or GIF max 1MB
+                                                    JPG, PNG, SVG JPEG or GIF max 1MB
                                                 </p>
                                                 <input 
                                                     className="hidden"
