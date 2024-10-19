@@ -3,6 +3,8 @@ import { cookies } from "next/headers";
 import { Account, Client, Databases, Query } from "node-appwrite";
 import { AUTH_COOKIE } from "../auth/constants";
 import { DATABASE_ID, MEMBERS_ID, WORKSPACES_ID } from "@/config";
+import { getMember } from "../members/utils";
+import { Workspace } from "./types";
 
 
 export const getWorkspaces = async () => {
@@ -50,7 +52,11 @@ export const getWorkspaces = async () => {
     }
 }
 
-export const getWorkspace = async () => {
+interface GetWorkspaceProps {
+    workspaceId: string;
+}
+
+export const getWorkspace = async ({ workspaceId }: GetWorkspaceProps) => {
 
     try {
         const client = new Client()
@@ -59,7 +65,7 @@ export const getWorkspace = async () => {
         
         const session = await cookies().get(AUTH_COOKIE);
 
-        if (!session) return { documents: [], total: 0};
+        if (!session) return null;
 
         client.setSession(session.value);
 
@@ -67,30 +73,25 @@ export const getWorkspace = async () => {
         const account = new Account(client);
         const user = await account.get();
 
-        const members = await databases.listDocuments(
-            DATABASE_ID,
-            MEMBERS_ID,
-            [Query.equal("userId", user.$id)]
-        );
+        const member = await getMember({
+            databases,
+            userId: user.$id,
+            workspaceId,
+        });
 
-        if (members.total === 0) {
-            return { documents: [], total: 0};
+        if(!member) {
+            return null;
         }
 
-        const workspaceIds = members.documents.map((member) => member.workspaceId)
-
-        const workspaces = await databases.listDocuments(
+        const workspace = await databases.getDocument<Workspace>(
             DATABASE_ID,
             WORKSPACES_ID,
-            [
-                Query.orderDesc("$createdAt"),
-                Query.contains("$id", workspaceIds)
-            ],
+            workspaceId,
         )
 
-        return workspaces;
+        return workspace;
 
     }catch{
-        return { documents: [], total: 0};
+        return null;
     }
 }
