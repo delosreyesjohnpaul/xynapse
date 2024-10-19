@@ -149,7 +149,13 @@ export const CreateWorkspaceForm = ({ onCancel } : CreateWorkspaceFormProps) => 
                                                         variant="destructive"
                                                         size="xs"
                                                         className="w-fit mt-2"
-                                                        onClick={() => inputRef.current?.click()}
+                                                        onClick={() => {
+                                                            field.onChange(null);
+                                                            if (inputRef.current) {
+                                                                inputRef.current.value = "";
+                                                            }
+                                                        }}
+                                                        
                                                     >
                                                         Remove Image
                                                     </Button>
@@ -160,12 +166,7 @@ export const CreateWorkspaceForm = ({ onCancel } : CreateWorkspaceFormProps) => 
                                                         variant="tertiary"
                                                         size="xs"
                                                         className="w-fit mt-2"
-                                                        onClick={() => {
-                                                            field.onChange(null);
-                                                            if (inputRef.current) {
-                                                                inputRef.current.value = "";
-                                                            }
-                                                        }}
+                                                        onClick={() => inputRef.current?.click()}
                                                     >
                                                         Upload Image
                                                     </Button>
