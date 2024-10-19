@@ -38,7 +38,7 @@ interface EditWorkspaceFormProps {
     initialValues: Workspace;
 };
 
-export const CreateWorkspaceForm = ({ onCancel, initialValues } : EditWorkspaceFormProps) => {
+export const EditWorkspaceForm = ({ onCancel, initialValues } : EditWorkspaceFormProps) => {
     const router = useRouter();
     const { mutate, isPending } = useCreateWorkspace();
 
