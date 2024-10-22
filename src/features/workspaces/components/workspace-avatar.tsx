@@ -22,7 +22,7 @@ export const WorkspaceAvatar = ({
                 <Image src={image} alt={name} fill className="object-cover"/>
             </div>
         );
-    }
+    } 
 
 
     return (
