@@ -33,6 +33,7 @@ import { cn } from "@/lib/utils";
 import { Workspace } from "../types";
 import { useUpdateWorkspace } from "../api/use-update-workspace";
 import { useConfirm } from "@/hooks/use-confirm";
+import { useDeleteWorkspace } from "../api/use-delete-workspace";
 
 interface EditWorkspaceFormProps {
     onCancel?: () => void;
@@ -42,6 +43,11 @@ interface EditWorkspaceFormProps {
 export const EditWorkspaceForm = ({ onCancel, initialValues } : EditWorkspaceFormProps) => {
     const router = useRouter();
     const { mutate, isPending } = useUpdateWorkspace();
+
+    const { 
+        mutate: deleteWorkspace, 
+        isPending: isDeletingWorkspace 
+    } = useDeleteWorkspace();
 
     const [DeleteDialog, confirmDelete] = useConfirm(
         "Delete Workspace",
@@ -65,8 +71,14 @@ export const EditWorkspaceForm = ({ onCancel, initialValues } : EditWorkspaceFor
 
         if (!ok) return;
 
-        console.log("deleting...")
-    }
+        deleteWorkspace({
+            param: { workspaceId: initialValues.$id },
+        }, {
+            onSuccess: () => {
+                router.push("/");
+            },
+        });
+    };
 
     const onSubmit = (values: z.infer<typeof updateWorkspaceSchema>) => {
         const finalValues = {
