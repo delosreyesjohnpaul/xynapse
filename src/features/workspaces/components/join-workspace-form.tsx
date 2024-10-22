@@ -10,6 +10,10 @@ import {
     CardTitle,
 } from "@/components/ui/card";
 import Link from "next/link";
+import { useJoinWorkspace } from "../api/use-join-workspace";
+import { useInviteCode } from "../hooks/use-invite-code";
+import { useWorkspaceId } from "../hooks/use-workspace-id";
+import { useRouter } from "next/navigation";
 
 interface JoinWorkspaceFormProps {
     initialValues: {
@@ -20,6 +24,22 @@ interface JoinWorkspaceFormProps {
 export const JoinWorkspaceForm = ({
     initialValues,
 }: JoinWorkspaceFormProps) => {
+    const router = useRouter();
+    const workspaceId = useWorkspaceId();
+    const inviteCode = useInviteCode();
+    const { mutate, isPending } = useJoinWorkspace();
+
+    const onSubmit = () => {
+        mutate({
+            param: { workspaceId },
+            json: { code: inviteCode }
+        }, {
+            onSuccess: ({ data }) => {
+                router.push(`/workspaces/${data.$id}`);
+            },
+        })
+    }
+
     return (
         <Card className="w-full h-full border-none shadow-none">
             <CardHeader className="p-7">
@@ -35,14 +55,20 @@ export const JoinWorkspaceForm = ({
                         variant="secondary"
                         type="button"
                         asChild
+                        size="lg"
                         className="w-full lg:w-fit"
+                        disabled={isPending}
                     >
-                        <Link href="/"/>
-                        Cancel
+                         <Link href="/">Cancel</Link>
                     </Button>
 
                     <Button
+                        size="lg"
                         className="w-full lg:w-fit"
+                        type="button"
+                        onClick={onSubmit}
+                        disabled={isPending}
+
                     >
                         Join Workspace
                     </Button>
