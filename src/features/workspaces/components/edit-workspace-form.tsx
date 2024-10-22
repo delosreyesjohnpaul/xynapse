@@ -75,7 +75,7 @@ export const EditWorkspaceForm = ({ onCancel, initialValues } : EditWorkspaceFor
             param: { workspaceId: initialValues.$id },
         }, {
             onSuccess: () => {
-                router.push("/");
+                window.location.href = "/";
             },
         });
     };
