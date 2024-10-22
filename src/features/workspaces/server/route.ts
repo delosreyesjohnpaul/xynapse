@@ -251,7 +251,7 @@ const app = new Hono()
 
             await databases.createDocument(
                 DATABASE_ID,
-                WORKSPACES_ID,
+                MEMBERS_ID,
                 ID.unique(),
                 {
                     workspaceId,

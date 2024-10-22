@@ -59,7 +59,7 @@ export const JoinWorkspaceForm = ({
                         className="w-full lg:w-fit"
                         disabled={isPending}
                     >
-                         <Link href="/">Cancel</Link>
+                        <Link href="/">Cancel</Link>
                     </Button>
 
                     <Button
