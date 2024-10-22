@@ -27,7 +27,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { ArrowLeft, ImageIcon } from "lucide-react";
+import { ArrowLeft, ImageIcon, OctagonAlert } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Workspace } from "../types";
@@ -245,14 +245,17 @@ export const EditWorkspaceForm = ({ onCancel, initialValues } : EditWorkspaceFor
             <Card className="w-full h-full border-none shadow-none">
                 <CardContent className="p-7">
                     <div className="flex flex-col">
-                        <h3 className="font-bold text-red-600">Danger Zone</h3>
+                        <div className="flex items-center gap-1">
+                            <OctagonAlert className="size-4 text-red-600 font-bold"/>
+                            <h3 className="font-bold text-red-600">Danger Zone</h3>
+                        </div>
                         <p className="text-sm text-muted-foreground">Deleting a workspace is irreversible and will remove all associated data</p>
                         <Button
                             className="mt-6 w-fit ml-auto"
                             size="sm"
                             variant="destructive"
                             type="button"
-                            disabled={isPending}
+                            disabled={isPending || isDeletingWorkspace}
                             onClick={handleDelete}
                         >
                             Delete Workspace
