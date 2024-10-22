@@ -8,12 +8,13 @@ import {
 } from "@/components/ui/card";
 import { useWorkspaceId } from "../hooks/use-workspace-id";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, MoreVerticalIcon } from "lucide-react";
 import Link from "next/link";
 import { DottedSeparator } from "@/components/dotted-separator";
 import { useGetMembers } from "@/features/members/api/use-get-members";
 import { Fragment } from "react";
 import { MemberAvatar } from "@/features/members/components/member-avatar";
+import { Separator } from "@/components/ui/separator";
 
 export const MemberList = () => {
     const workspaceId = useWorkspaceId();
@@ -42,7 +43,23 @@ export const MemberList = () => {
                                 fallbackClassName="text-lg"
                                 name={member.name}
                             />
+                            <div className="flex flex-col ">    
+                                <p className="text-sm font-medium ">{member.name}</p>
+                                <p className="text-xs text-muted-foreground ">{member.email}</p>
+                            </div>
+
+                            <Button
+                                className="ml-auto "
+                                variant="secondary"
+                                size="icon"
+                            >
+                                <MoreVerticalIcon className="size-4 text-muted-foreground"/>
+                            </Button>
                         </div>
+
+                        {index < data.documents.length - 1 && (
+                            <Separator className="my-2.5"/>
+                        )}
                     </Fragment>
                 ))}
             </CardContent>
