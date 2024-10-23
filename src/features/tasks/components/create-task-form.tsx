@@ -27,6 +27,7 @@ import { useCreateTask } from "../api/use-create-task";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
+import { DatePicker } from "@/components/date-picker";
 
 interface CreateTaskFormProps {
     onCancel?: () => void;
@@ -102,7 +103,7 @@ export const CreateTaskForm = ({
                                             Due Date
                                         </FormLabel>
                                         <FormControl>
-                                            {/* TODO Datepicker */}
+                                            <DatePicker {...field}/>
                                         </FormControl>
                                         <FormMessage/>
                                     </FormItem>
