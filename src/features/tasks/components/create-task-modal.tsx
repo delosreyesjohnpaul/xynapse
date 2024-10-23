@@ -1,3 +1,5 @@
+"use client";
+
 import { ResponsiveModal } from "@/components/responsive-modal";
 import { useCreateTasktModal } from "../hooks/use-create-task-modal";
 
