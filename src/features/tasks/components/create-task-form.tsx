@@ -38,6 +38,7 @@ import {
 } from "@/components/ui/select"
 import { MemberAvatar } from "@/features/members/components/member-avatar";
 import { TaskStatus } from "../types";
+import { ProjectAvatar } from "@/features/projects/components/project-avatar";
 
 interface CreateTaskFormProps {
     onCancel?: () => void;
@@ -194,6 +195,43 @@ export const CreateTaskForm = ({
                                             <SelectItem value={TaskStatus.DONE}>
                                                 Done
                                             </SelectItem>
+                                        </SelectContent>
+                                       </Select>
+                                    </FormItem>
+                                )}
+                            />
+
+                            <FormField
+                                control={form.control}
+                                name="projectId"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>
+                                            Project
+                                        </FormLabel>
+                                       <Select
+                                            defaultValue={field.value}
+                                            onValueChange={field.onChange}
+                                       >
+                                        <FormControl>
+                                            <SelectTrigger>
+                                                <SelectValue placeholder="Select Project"/>
+                                            </SelectTrigger>
+                                        </FormControl>
+                                        <FormMessage/>
+                                        <SelectContent>
+                                            {projectOptions.map((project) => (
+                                                <SelectItem key={project.id} value={project.id}>
+                                                   <div className="flex items-center gap-x-2">
+                                                        <ProjectAvatar
+                                                            className="size-6"
+                                                            name={project.name}
+                                                            image={project.imageUrl}
+                                                        />
+                                                        {project.name}
+                                                    </div> 
+                                                </SelectItem>
+                                            ))}
                                         </SelectContent>
                                        </Select>
                                     </FormItem>
