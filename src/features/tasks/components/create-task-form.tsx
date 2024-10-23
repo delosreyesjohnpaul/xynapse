@@ -29,6 +29,15 @@ import { cn } from "@/lib/utils";
 import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
 import { DatePicker } from "@/components/date-picker";
 
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
+import { MemberAvatar } from "@/features/members/components/member-avatar";
+
 interface CreateTaskFormProps {
     onCancel?: () => void;
     projectOptions: { id: string, name: string, imageUrl: string }[];
@@ -106,6 +115,42 @@ export const CreateTaskForm = ({
                                             <DatePicker {...field}/>
                                         </FormControl>
                                         <FormMessage/>
+                                    </FormItem>
+                                )}
+                            />
+
+                            <FormField
+                                control={form.control}
+                                name="assigneeId"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>
+                                            Assignee
+                                        </FormLabel>
+                                       <Select
+                                            defaultValue={field.value}
+                                            onValueChange={field.onChange}
+                                       >
+                                        <FormControl>
+                                            <SelectTrigger>
+                                                <SelectValue placeholder="Select assignee"/>
+                                            </SelectTrigger>
+                                        </FormControl>
+                                        <FormMessage/>
+                                        <SelectContent>
+                                            {memberOptions.map((member) => (
+                                                <SelectItem key={member.id} value={member.id}>
+                                                   <div className="flex items-center gap-x-2">
+                                                        <MemberAvatar
+                                                            className="size-6"
+                                                            name={member.name}
+                                                        />
+                                                        {member.name}
+                                                    </div> 
+                                                </SelectItem>
+                                            ))}
+                                        </SelectContent>
+                                       </Select>
                                     </FormItem>
                                 )}
                             />
