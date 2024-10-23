@@ -5,8 +5,6 @@ import { useForm } from "react-hook-form";
 import { createTaskSchema } from "../schemas";
 import { z } from "zod";
 
-import { useRef } from "react";
-
 import {
     Card,
     CardContent,
@@ -26,9 +24,6 @@ import { DottedSeparator } from "@/components/dotted-separator";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useCreateTask } from "../api/use-create-task";
-import Image from "next/image";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { ImageIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
@@ -47,8 +42,6 @@ export const CreateTaskForm = ({
     const workspaceId = useWorkspaceId();
     const router = useRouter();
     const { mutate, isPending } = useCreateTask();
-
-    const inputRef = useRef<HTMLInputElement>(null);
 
     const form = useForm<z.infer<typeof createTaskSchema>>({
         resolver: zodResolver(createTaskSchema.omit({ workspaceId: true })),
