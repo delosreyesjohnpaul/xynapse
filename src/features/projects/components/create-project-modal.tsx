@@ -1,7 +1,7 @@
 "use client";
 
 import { ResponsiveModal } from "@/components/responsive-modal"
-import { CreateWorkspaceForm } from "./create-project-form"
+import { CreateProjectForm } from "./create-project-form"
 import { useCreateProjectModal } from "../hooks/use-create-project-modal";
 
 export const CreateProjectModal = () => {
@@ -9,7 +9,7 @@ export const CreateProjectModal = () => {
 
     return (
         <ResponsiveModal open={isOpen} onOpenChange={() => {}}>
-            <CreateWorkspaceForm onCancel={close}/>
+            <CreateProjectForm onCancel={close}/>
         </ResponsiveModal>
     );
 };

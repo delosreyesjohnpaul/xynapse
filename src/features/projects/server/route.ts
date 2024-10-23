@@ -5,7 +5,7 @@ import { zValidator } from "@hono/zod-validator";
 import { Hono } from "hono";
 import { ID, Query } from "node-appwrite";
 import { z } from "zod";
-import { createProjectSchema } from "../schema";
+import { createProjectSchema } from "../schemas";
 
 const app = new Hono()
     .post(
