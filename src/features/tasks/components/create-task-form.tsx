@@ -92,6 +92,23 @@ export const CreateTaskForm = ({
                                     </FormItem>
                                 )}
                             />
+
+                            <FormField
+                                control={form.control}
+                                name="dueDate"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>
+                                            Due Date
+                                        </FormLabel>
+                                        <FormControl>
+                                            {/* TODO Datepicker */}
+                                        </FormControl>
+                                        <FormMessage/>
+                                    </FormItem>
+                                )}
+                            />
+                            
                         </div>
                         <DottedSeparator classname="py-7"/>
                         <div className="flex items-center justify-between">
