@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/select";
 
 import { DatePicker } from "@/components/date-picker";
-import { ListCheckIcon } from "lucide-react";
+import { ListCheckIcon, UserIcon } from "lucide-react";
 import { TaskStatus } from "../types";
 import { useTaskFilters } from "../hooks/use-task-filters";
 
@@ -47,6 +47,14 @@ export const DataFilters = ({ hideProjectFilters } : DataFiltersProps) => {
 
     const onStatusChange = (value: string) => {
         setFilters({ status: value === "all" ? null : value as TaskStatus });
+    }
+
+    const onAssigneeChange = (value: string) => {
+        setFilters({ assigneeId: value === "all" ? null : value as string });
+    }
+
+    const onProjectChange = (value: string) => {
+        setFilters({ projectId: value === "all" ? null : value as string });
     }
 
     if (isLoading) return null;
@@ -87,6 +95,27 @@ export const DataFilters = ({ hideProjectFilters } : DataFiltersProps) => {
                         Done
                     </SelectItem>
 
+                </SelectContent>
+            </Select>
+
+            <Select
+             defaultValue={assigneeId ?? undefined}
+             onValueChange={(value) => onAssigneeChange(value)}
+            >
+                <SelectTrigger className="w-full lg:w-auto h-8">
+                    <div className="flex items-center pr-2">
+                        <UserIcon className="size-4 mr-2"/>
+                        <SelectValue placeholder="All Assignees"/>
+                    </div>
+                </SelectTrigger>
+                <SelectContent>
+                    <SelectItem value="all">All Assignees</SelectItem>
+                    <SelectSeparator/>
+                    {membersOptions?.map((member) => (
+                        <SelectItem key={member.value} value={member.value}>
+                            {member.label}
+                        </SelectItem>
+                    ))}
                 </SelectContent>
             </Select>
         </div>
