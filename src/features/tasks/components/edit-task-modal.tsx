@@ -1,8 +1,8 @@
 "use client";
 
 import { ResponsiveModal } from "@/components/responsive-modal";
-import { CreateTaskFormWrapper } from "./create-task-form-wrapper";
 import { useEditTasktModal } from "../hooks/use-edit-task-modal";
+import { EditTaskFormWrapper } from "./edit-task-form-wrapper";
  
 export const EditTaskModal = () => {
     const { taskId, close} = useEditTasktModal();
@@ -10,7 +10,7 @@ export const EditTaskModal = () => {
     return (
         <ResponsiveModal open={!!taskId} onOpenChange={close}>
             {taskId && (
-                <CreateTaskFormWrapper onCancel={close}/>
+                <EditTaskFormWrapper id={taskId} onCancel={close}/>
             )}
         </ResponsiveModal>
     );

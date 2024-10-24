@@ -5,13 +5,15 @@ import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
 import { Loader } from "lucide-react";
 import { CreateTaskForm } from "./create-task-form";
 
-interface CreateTaskFormWrapperProps {
+interface EditTaskFormWrapperProps {
     onCancel: () => void;
+    id: string
 };
 
-export const CreateTaskFormWrapper = ({ 
+export const EditTaskFormWrapper = ({ 
     onCancel,
-} : CreateTaskFormWrapperProps) => {
+    id,
+} : EditTaskFormWrapperProps) => {
     const workspaceId = useWorkspaceId();
 
     const { data: projects, isLoading: isLoadingProjects } = useGetProjects({ workspaceId });
