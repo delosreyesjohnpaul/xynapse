@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/select";
 
 import { DatePicker } from "@/components/date-picker";
-import { ListCheckIcon, UserIcon } from "lucide-react";
+import { FolderIcon, ListCheckIcon, UserIcon } from "lucide-react";
 import { TaskStatus } from "../types";
 import { useTaskFilters } from "../hooks/use-task-filters";
 
@@ -114,6 +114,27 @@ export const DataFilters = ({ hideProjectFilters } : DataFiltersProps) => {
                     {membersOptions?.map((member) => (
                         <SelectItem key={member.value} value={member.value}>
                             {member.label}
+                        </SelectItem>
+                    ))}
+                </SelectContent>
+            </Select>
+
+            <Select
+             defaultValue={projectId ?? undefined}
+             onValueChange={(value) => onProjectChange(value)}
+            >
+                <SelectTrigger className="w-full lg:w-auto h-8">
+                    <div className="flex items-center pr-2">
+                        <FolderIcon className="size-4 mr-2"/>
+                        <SelectValue placeholder="All Projects"/>
+                    </div>
+                </SelectTrigger>
+                <SelectContent>
+                    <SelectItem value="all">All Projects</SelectItem>
+                    <SelectSeparator/>
+                    {projectsOptions?.map((project) => (
+                        <SelectItem key={project.value} value={project.value}>
+                            {project.label}
                         </SelectItem>
                     ))}
                 </SelectContent>
