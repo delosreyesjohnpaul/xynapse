@@ -9,6 +9,7 @@ import { ProjectAvatar } from "@/features/projects/components/project-avatar";
 import { MemberAvatar } from "@/features/members/components/member-avatar";
 import { TaskDate } from "./task-date";
 import { Badge } from "@/components/ui/badge";
+import { snakeCaseToTitleCase } from "@/lib/utils";
 
 export const columns: ColumnDef<Task>[] = [
     {
@@ -128,7 +129,7 @@ export const columns: ColumnDef<Task>[] = [
         cell: ({ row }) => {
             const status = row.original.status;
 
-            return <Badge>{status}</Badge>
+            return <Badge>{snakeCaseToTitleCase(status)}</Badge>
         }
     }
 ];
