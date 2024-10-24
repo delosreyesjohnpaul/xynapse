@@ -9,12 +9,31 @@ import {
     TabsTrigger 
 } from "@/components/ui/tabs"
 import { PlusIcon } from "lucide-react"
-import { useCreateTasktModal } from "../hooks/use-create-task-modal"
+import { useCreateTasktModal } from "../hooks/use-create-task-modal";
+
+import { useQueryState } from "nuqs";
+
+import { useGetTasks } from "../api/use-get-task";
+import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
 
 export const TaskViewSwitcher = () => {
+    const [view, setView] = useQueryState("task-view", {
+        defaultValue: "table",
+    });
+
+    const workspaceId = useWorkspaceId();
     const { open } = useCreateTasktModal();
+
+    const { 
+        data: tasks, 
+        isLoading: isLoadingTasks 
+    } = useGetTasks({ workspaceId });
+
+    
     return (
         <Tabs 
+            defaultValue={view}
+            onValueChange={setView}
             className="flex-1 w-full border rounded-lg"
         >
             <div className="h-full flex flex-col overflow-auto p-4">
@@ -55,15 +74,15 @@ export const TaskViewSwitcher = () => {
 
                 <>
                     <TabsContent value="table" className="mt-0">
-                        Data Table
+                        {JSON.stringify(tasks)}
                     </TabsContent>
 
                     <TabsContent value="kanban" className="mt-0">
-                        Data Kanban
+                        {JSON.stringify(tasks)}
                     </TabsContent>
 
                     <TabsContent value="calendar" className="mt-0">
-                        Data Calendar
+                        {JSON.stringify(tasks)}
                     </TabsContent>
                 </>
             </div>
