@@ -7,6 +7,7 @@ import { Task } from "../types";
 import { Button } from "@/components/ui/button";
 import { ProjectAvatar } from "@/features/projects/components/project-avatar";
 import { MemberAvatar } from "@/features/members/components/member-avatar";
+import { TaskDate } from "./task-date";
 
 export const columns: ColumnDef<Task>[] = [
     {
@@ -87,6 +88,26 @@ export const columns: ColumnDef<Task>[] = [
                     <p className="line-clamp-1">{assignee.name}</p>
                 </div>
             )
+        }
+    },
+
+    {
+        accessorKey: "dueDate",
+        header: ({ column }) => {
+            return (
+                <Button
+                  variant="ghost"
+                  onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+                >
+                Due Date
+                  <ArrowUpDown className="ml-2 h-4 w-4" />
+                </Button>
+            )
+        },
+        cell: ({ row }) => {
+            const dueDate = row.original.dueDate;
+
+            return <TaskDate value={dueDate} />
         }
     }
 ];
