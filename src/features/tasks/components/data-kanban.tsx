@@ -51,8 +51,16 @@ export const DataKanban = ({ data } : DataKanbanProps) => {
     })
 
     return (
-        <div>
-            Data Kanban
-        </div>
+        <DragDropContext onDragEnd={() => {}}>
+            <div className="flex overflow-x-auto">
+                {boards.map((board) => {
+                    return (
+                        <div key={board} className="flex-1 mx-2 bg-muted p-1.5 rounded-md min-w[200px]">
+                            {board}
+                        </div>
+                    )
+                })}
+            </div>
+        </DragDropContext>
     )
 }
