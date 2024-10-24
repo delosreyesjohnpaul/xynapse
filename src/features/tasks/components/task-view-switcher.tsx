@@ -15,6 +15,7 @@ import { useQueryState } from "nuqs";
 
 import { useGetTasks } from "../api/use-get-task";
 import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
+import { DataFilters } from "./data-filters";
 
 export const TaskViewSwitcher = () => {
     const [view, setView] = useQueryState("task-view", {
@@ -68,8 +69,7 @@ export const TaskViewSwitcher = () => {
                     </Button>
                 </div>
                 <DottedSeparator classname="my-4"/>
-                {/* Add filters */}
-                Data Filters 
+                    <DataFilters/>
                 <DottedSeparator classname="my-4"/>
 
                 {isLoadingTasks ? (
