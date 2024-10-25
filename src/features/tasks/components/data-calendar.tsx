@@ -16,6 +16,7 @@ import { useState } from "react";
 
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "./data-calendar.css";
+import { EventCard } from "./event-card";
 
 const locales = {
     "en-US": enUS
