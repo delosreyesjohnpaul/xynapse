@@ -7,6 +7,15 @@ import {
     DropResult,
 } from "@hello-pangea/dnd";
 
+import {
+    CircleCheckIcon,
+    CircleDashedIcon,
+    CircleDotDashedIcon,
+    CircleDotIcon,
+    CircleIcon,
+    PlusIcon,
+} from "lucide-react";
+
 import React, {
     useCallback,
     useEffect,
