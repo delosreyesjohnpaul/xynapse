@@ -38,9 +38,13 @@ type TasksState = {
 
 interface DataKanbanProps {
     data: Task[];
+    onChange: (tasks: { $id: string; status: TaskStatus; position: number }[]) => void;
 };
 
-export const DataKanban = ({ data } : DataKanbanProps) => {
+export const DataKanban = ({ 
+    data,
+    onChange,
+} : DataKanbanProps) => {
     const [tasks, setTasks] = useState<TasksState>(() => {
         const initialTasks: TasksState = {
             [TaskStatus.BACKLOG]: [],
@@ -60,6 +64,27 @@ export const DataKanban = ({ data } : DataKanbanProps) => {
 
         return initialTasks;
     })
+
+    useEffect(() => {
+        const newTasks: TasksState = {
+            [TaskStatus.BACKLOG]: [],
+            [TaskStatus.TODO]: [],
+            [TaskStatus.IN_PROGRESS]: [],
+            [TaskStatus.IN_REVIEW]: [],
+            [TaskStatus.DONE]: [],
+        };
+
+        data.forEach((task) => {
+            newTasks[task.status].push(task);
+        });
+
+        Object.keys(newTasks).forEach((status) => {
+            newTasks[status as TaskStatus].sort((a, b) => a.position - b.position);
+        });
+
+        setTasks(newTasks);
+
+    }, [data]);
 
     const onDragEnd = useCallback((result: DropResult) => {
         if (!result.destination) return;
@@ -129,8 +154,10 @@ export const DataKanban = ({ data } : DataKanbanProps) => {
             }
 
             return newTasks;
-        })
-    }, []);
+        });
+
+        onChange(updatesPayload);
+    }, [onChange]);
 
     return (
         <DragDropContext onDragEnd={onDragEnd}>
