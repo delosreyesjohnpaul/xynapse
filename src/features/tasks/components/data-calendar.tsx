@@ -14,6 +14,9 @@ import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import { Task } from "../types";
 import { useState } from "react";
 
+import "react-big-calendar/lib/css/react-big-calendar.css";
+import "./data-calendar.css";
+
 const locales = {
     "en-US": enUS
 }
@@ -69,7 +72,7 @@ export const DataCalendar = ({ data } : DataCalendarProps) => {
             formats={{
                 weekdayFormat: (date, culture, localizer) => localizer?.format(date, "EEE", culture) ?? "",
             }}
-            
+
         />
     )
 }
