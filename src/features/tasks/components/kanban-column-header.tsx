@@ -9,6 +9,7 @@ import {
     PlusIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useCreateTasktModal } from "../hooks/use-create-task-modal";
 
 interface KanbanColumnHeaderProps {
     board: TaskStatus;
@@ -39,6 +40,8 @@ export const KanbanColumnHeader = ({
     board,
     taskCount,
 } : KanbanColumnHeaderProps) => {
+    const { open } = useCreateTasktModal();
+
     const icon = statusIconMap[board];
 
     return (
@@ -53,7 +56,7 @@ export const KanbanColumnHeader = ({
                     {taskCount}
                 </div>
             </div>
-            <Button onClick={() => {}} variant="ghost" size="icon" className="size-5">
+            <Button onClick={open} variant="ghost" size="icon" className="size-5">
                 <PlusIcon className="size-4 text-neutral-500"/>
             </Button>
         </div>
