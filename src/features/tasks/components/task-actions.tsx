@@ -13,17 +13,17 @@ import { useRouter } from "next/navigation";
 import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
 import { useEditTasktModal } from "../hooks/use-edit-task-modal";
 
-interface TaskActionsProps {
+interface TaskActionProps {
     id: string;
     projectId: string;
     children: React.ReactNode;
 }
 
-export const TaskActions = ({
+export const TaskAction = ({
     id,
     projectId,
     children,
-} : TaskActionsProps) => {
+} : TaskActionProps) => {
     const workspaceId = useWorkspaceId();
     const router = useRouter();
 
