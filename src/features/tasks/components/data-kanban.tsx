@@ -22,6 +22,7 @@ import React, {
     useState,
 } from "react";
 import { KanbanColumnHeader } from "./kanban-column-header";
+import { KanbanCard } from "./kanban-card";
 
 const boards: TaskStatus[] = [
     TaskStatus.BACKLOG,
@@ -90,7 +91,7 @@ export const DataKanban = ({ data } : DataKanbanProps) => {
                                                         {...provided.draggableProps}
                                                         {...provided.dragHandleProps}
                                                     >
-                                                        {task.name}
+                                                        <KanbanCard task={task} />
                                                     </div>
                                                 )}
                                             </Draggable>
