@@ -99,11 +99,41 @@ export const DataKanban = ({ data } : DataKanbanProps) => {
                 position: Math.min((destination.index + 1) * 1000, 1_000_000)
             })
 
+            newTasks[destStatus].forEach((task, index) => {
+                if (task && task.$id !== updatedMovedTask.$id) {
+                    const newPosition = Math.min((index + 1) * 1000, 1_000_000);
+                    if (task.position !== newPosition) {
+                        updatesPayload.push({
+                            $id: task.$id,
+                            status: destStatus,
+                            position: newPosition,
+                        });
+                    }
+                }
+            })
+
+            if (sourceStatus !== destStatus) {
+                newTasks[sourceStatus].forEach((task, index) => {
+                    if (task) {
+                        const newPosition = Math.min((index + 1) * 1000, 1_000_000);
+
+                        if (task.position !== newPosition) {
+                            updatesPayload.push({
+                                $id: task.$id,
+                                status: sourceStatus,
+                                position: newPosition,
+                            })
+                        }
+                    }
+                })
+            }
+
+            return newTasks;
         })
     }, []);
 
     return (
-        <DragDropContext onDragEnd={() => {}}>
+        <DragDropContext onDragEnd={onDragEnd}>
             <div className="flex overflow-x-auto">
                 {boards.map((board) => {
                     return (
