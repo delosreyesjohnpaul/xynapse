@@ -1,4 +1,12 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Xynapse
+
+Xynapse is a cutting-edge project management platform designed to streamline team collaboration and task execution. Inspired by the rapid connections of the human brain, Xynapse accelerates workflow processes by seamlessly linking tasks, teams, and tools in one intelligent system.
+
+## Built With
+
+- **Bun**: A fast all-in-one JavaScript runtime.
+- **Appwrite**: A backend server for web, mobile, and Flutter developers.
+- **Hono**: A small, simple, and fast router for the Edge.
 
 ## Getting Started
 
