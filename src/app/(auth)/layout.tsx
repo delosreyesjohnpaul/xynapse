@@ -18,8 +18,8 @@ const AuthLayout = ({ children } : AuthLayoutProps) => {
             <div className="mx-auto max-w-screen-2xl p-4">
                 <nav className="flex justify-between items-center">
                     <div className="flex items-center gap-0">
-                        <Image src="/logo.svg" height={52} width={52} alt="logo"/>
-                        <h1 className="bg-gradient-to-r from-emerald-500 to-sky-400 inline-flex tracking-tight font-bold text-transparent bg-clip-text text-2xl">Xynapse</h1>
+                        <Image src="/logo.png" height={35} width={35} alt="logo"/>
+                        <h1 className="bg-gradient-to-r from-emerald-500 to-sky-400 inline-flex tracking-tight font-bold text-transparent bg-clip-text text-2xl">ynapse</h1>
                     </div>
                     <Button asChild variant="secondary">
                         <Link href={isSignIn ? "/sign-up" : "/sign-in"}>
