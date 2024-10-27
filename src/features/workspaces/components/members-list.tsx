@@ -121,13 +121,13 @@ export const MemberList = () => {
                                     >
                                         Set as Member
                                     </DropdownMenuItem>
-                                    <DropdownMenuItem
+                                    {/* <DropdownMenuItem
                                         className="font-medium text-amber-700"
                                         onClick={() => handleDeleteMember(member.$id)}
                                         disabled={isDeletingMember}
                                     >
                                         Remove {member.name}
-                                    </DropdownMenuItem>
+                                    </DropdownMenuItem> */}
                                 </DropdownMenuContent>
                             </DropdownMenu>
                         </div>
